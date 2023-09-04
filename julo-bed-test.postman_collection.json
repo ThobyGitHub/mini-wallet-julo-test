@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "e7cddfdb-3e09-47ae-a59b-63c2a88ec42a",
+		"name": "julo-bed-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18177653"
+	},
+	"item": [
+		{
+			"name": "init",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json().data;\r",
+							"//console.log(json);\r",
+							"pm.environment.set(\"token\", json.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_xid",
+							"value": "ea0212d3-abd6-406f-8c67-868e814a2436",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:5000/api/v1/wallet/init"
+			},
+			"response": []
+		},
+		{
+			"name": "enable wallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "http://localhost:5000/api/v1/wallet"
+			},
+			"response": []
+		},
+		{
+			"name": "disable wallet",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "is_disabled",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:5000/api/v1/wallet"
+			},
+			"response": []
+		},
+		{
+			"name": "view my wallet balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "http://localhost:5000/api/v1/wallet"
+			},
+			"response": []
+		},
+		{
+			"name": "view my wallet transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "http://localhost:5000/api/v1/wallet"
+			},
+			"response": []
+		},
+		{
+			"name": "add my wallet balance",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "reference_id",
+							"value": "70535246-dcb2-4929-8cc9-004ea06f5241",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:5000/api/v1/wallet/deposits"
+			},
+			"response": [
+				{
+					"name": "view my wallet balance Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "12000",
+									"type": "text"
+								},
+								{
+									"key": "reference_id",
+									"value": "70535246-dcb2-4929-8cc9-004ea06f5241",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:5000/api/v1/wallet/deposits"
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "462"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1ce-aNtYnQ9OL330LesRS9Ze8MQb6AM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 04 Sep 2023 08:56:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"message\": \"Something went wrong\",\n    \"data\": {\n        \"error\": {\n            \"length\": 370,\n            \"name\": \"error\",\n            \"severity\": \"ERROR\",\n            \"code\": \"23505\",\n            \"detail\": \"Key (reference_id)=(70535246-dcb2-4929-8cc9-004ea06f5241) already exists.\",\n            \"schema\": \"public\",\n            \"table\": \"deposit_transactions\",\n            \"constraint\": \"deposit_transactions_reference_id_uindex\",\n            \"file\": \"d:\\\\pginstaller_13.auto\\\\postgres.windows-x64\\\\src\\\\backend\\\\access\\\\nbtree\\\\nbtinsert.c\",\n            \"line\": \"656\",\n            \"routine\": \"_bt_check_unique\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "use my wallet balance",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "reference_id",
+							"value": "70535246-dcb2-4929-8cc9-004ea06f5241",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:5000/api/v1/wallet/deposits"
+			},
+			"response": []
+		}
+	]
+}
