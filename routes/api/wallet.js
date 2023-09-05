@@ -26,11 +26,11 @@ router.post("/init", upload.none(), async (req, res) => {
         { customer_xid: customer_xid },
         process.env.TOKEN_KEY,
         {
-          expiresIn: "2h",
+          expiresIn: process.env.TOKEN_TIME,
         }
       );
   
-      // return ntoken
+      // return token
       return res.status(200).json({status: "success", data: {token: token}});
 
     } catch (err) {
